@@ -1,7 +1,17 @@
-import styles from './App.module.css';
+import ProgressBar from './components/ProgressBar';
+import colors from './styledParams/colors';
 
-function App() {
-  return <div>TODO</div>;
-}
+const App = (): JSX.Element => {
+  return (
+    <ProgressBar
+      progress={80}
+      margin="50px"
+      width="50%"
+      bgColor={colors['0']}
+      progressColor={colors['6']}
+      height="15px"
+    />
+  );
+};
 
 export default App;
