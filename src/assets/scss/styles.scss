@@ -1,4 +1,6 @@
 @import 'colors';
+@import 'typography';
+@import url($font-url);
 
 html {
   box-sizing: border-box;
@@ -17,4 +19,19 @@ body {
   padding: 0;
   height: 100%;
   background: linear-gradient(map-get($colors, 1), map-get($colors, 2));
+  font-family: 'Philosopher', sans-serif;
+  font-size: map-get($font-size, 'base');
+  letter-spacing: 0.04em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: white;
+}
+
+h2,
+h3 {
+  font-weight: 400;
 }

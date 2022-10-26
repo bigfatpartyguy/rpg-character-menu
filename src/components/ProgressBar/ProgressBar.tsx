@@ -1,35 +1,17 @@
 import ThirdPartyPB from '@ramonak/react-progress-bar';
 import styled from 'styled-components';
 
-interface ContainerProps {
-  readonly margin: string;
-  width: string;
-}
-
-interface ProgressProps {
-  margin: string;
-  width: string;
-  progress: number;
-  bgColor: string;
-  progressColor: string;
-  height: string;
-}
-
-const StyledProgressBarContainer = styled.div<ContainerProps>`
-  margin: ${(props) => props.margin};
-  width: ${(props) => props.width};
-`;
-
 const ProgressBar = ({
   progress,
-  margin,
   width,
   bgColor,
   progressColor,
   height,
+  roundedCorners,
+  bevel,
 }: ProgressProps): JSX.Element => {
   return (
-    <StyledProgressBarContainer margin={margin} width={width}>
+    <StyledPBContainer width={width} bevel={bevel}>
       <ThirdPartyPB
         completed={progress}
         transitionDuration={'0.3s'}
@@ -37,9 +19,52 @@ const ProgressBar = ({
         baseBgColor={bgColor}
         height={height}
         isLabelVisible={false}
+        borderRadius={roundedCorners ? '50px' : '0'}
       />
-    </StyledProgressBarContainer>
+    </StyledPBContainer>
   );
 };
+
+// STYLES
+
+const StyledPBContainer = styled.div<StyledPBContainerProps>`
+  width: ${({width}) => width};
+
+  div div {
+    clip-path: ${(props) =>
+      props.bevel !== undefined
+        ? `polygon(
+      1% 0,
+      99% 0%,
+      100% 50%,
+      100% 50%,
+      99% 100%,
+      1% 100%,
+      0 50%,
+      0 50%
+    );`
+        : 'none'};
+  }
+  div div div {
+    clip-path: none;
+  }
+`;
+
+// TYPES
+
+interface StyledPBContainerProps {
+  bevel?: boolean;
+  width: string;
+}
+
+interface ProgressProps {
+  width: string;
+  progress: number;
+  bgColor: string;
+  progressColor: string;
+  height: string;
+  roundedCorners: boolean;
+  bevel?: boolean;
+}
 
 export default ProgressBar;
