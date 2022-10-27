@@ -1,6 +1,6 @@
 import ProgressBar from './components/ProgressBar';
+import WelcomeWindow from './components/WelcomeWindow';
 import NameInput from './components/NameInput';
-import colors from './styledParams/colors';
 import characterData from './utils/data';
 import {downloadAsJSON} from './utils/helpers';
 import Button from './components/Button';
@@ -26,17 +26,13 @@ const App = (): JSX.Element => {
   };
   return (
     <>
-      <Button type="file" onChange={handleChange}>
+      <WelcomeWindow />
+      {/* <Button type="file" onChange={handleChange}>
         Upload data
       </Button>
       <Button type="button" onClick={handleClick}>
         Download data
       </Button>
-      {/* <input type="file" onChange={handleChange} />
-      <button onClick={handleClick}>Download data</button> */}
-      <h1>Адам</h1>
-      <h3>Сила</h3>
-      <h3>Харизма</h3>
       <NameInput color={colors['8']} />
       <ProgressBar
         progress={60}
@@ -46,7 +42,7 @@ const App = (): JSX.Element => {
         height="15px"
         roundedCorners={true}
         bevel
-      />
+      /> */}
     </>
   );
 };

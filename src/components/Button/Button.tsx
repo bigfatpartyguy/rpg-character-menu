@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const Button = ({
   children,
@@ -22,7 +22,7 @@ const FileButton = ({
 }: FileButtonProps): JSX.Element => {
   console.log(typeof children);
   return (
-    <div className={className}>
+    <div className={className} tabIndex={0}>
       <label htmlFor="fileInput">{children}</label>
       <input type="file" id="fileInput" onChange={onChange} />
     </div>
@@ -31,12 +31,40 @@ const FileButton = ({
 
 // STYLES
 
+const commonStyles = css`
+  border: none;
+  background-color: var(--color-white-transp04);
+  color: var(--color-dark-600);
+  padding: 10px 40px;
+  clip-path: polygon(
+    7% 0%,
+    93% 0%,
+    100% 50%,
+    100% 50%,
+    93% 100%,
+    7% 100%,
+    0 50%,
+    0 50%
+  );
+  cursor: pointer;
+  font-size: 1.5em;
+  font-weight: 700;
+  :hover,
+  :focus {
+    background-color: var(--color-white-transp08);
+    outline: none;
+  }
+  :active {
+    background-color: var(--color-yellow-light);
+  }
+  transition: all 200ms ease;
+`;
+
 const StyledFileButton = styled(FileButton)`
   display: inline-block;
+  ${commonStyles}
   label {
-    cursor: pointer;
-    font-size: 1.5em;
-    font-weight: 700;
+    cursor: inherit;
   }
   #fileInput {
     visibility: hidden;
@@ -45,11 +73,7 @@ const StyledFileButton = styled(FileButton)`
 `;
 
 const StyledButtonContainer = styled.button`
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 1.5em;
-  font-weight: 700;
+  ${commonStyles}
 `;
 
 // TYPES

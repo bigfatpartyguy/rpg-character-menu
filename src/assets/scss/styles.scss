@@ -2,6 +2,22 @@
 @import 'typography';
 @import url($font-url);
 
+:root {
+  --color-dark-700: #1c191f;
+  --color-dark-600: #281f29;
+  --color-lavender-300: #4a3c4e;
+  --color-lavender-200: #98a3c8;
+  --color-cyan-400: #2b464d;
+  --color-cyan-300: #3d8786;
+  --color-red-400: #601d1c;
+  --color-red-300: #983232;
+  --color-yellow-light: #f9f4c0;
+  --color-dirt: #5d5458;
+  --color-white-transp04: hsla(300, 3%, 94%, 0.4);
+  --color-white-transp08: hsla(300, 3%, 94%, 0.8);
+  --color-white: #efeeef;
+}
+
 html {
   box-sizing: border-box;
   height: 100vh;
@@ -22,6 +38,9 @@ body {
   font-family: 'Philosopher', sans-serif;
   font-size: map-get($font-size, 'base');
   letter-spacing: 0.04em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
 
 h1,
