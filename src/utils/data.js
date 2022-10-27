@@ -1,34 +1,34 @@
 const characterData = {
-  name: 'Maxim',
-  level: 3,
+  name: '',
+  level: 0,
   strength: {
-    value: 5,
+    value: 0,
     stats: {
-      attack: 4,
+      attack: 0,
     },
   },
   dexterity: {
-    value: 3,
+    value: 0,
     stats: {
-      stealth: 3,
-      archery: 2,
+      stealth: 0,
+      archery: 0,
     },
   },
   intelligence: {
-    value: 3,
+    value: 0,
     stats: {
-      learnability: 3,
-      sirvival: 3,
-      medicine: 1,
+      learnability: 0,
+      sirvival: 0,
+      medicine: 0,
     },
   },
   charisma: {
-    value: 4,
+    value: 0,
     stats: {
-      appearance: 4,
-      manipulation: 2,
-      insight: 3,
-      intimidation: 1,
+      appearance: 0,
+      manipulation: 0,
+      insight: 0,
+      intimidation: 0,
     },
   },
 };

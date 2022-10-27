@@ -1,12 +1,15 @@
-import ProgressBar from './components/ProgressBar';
+import {useState} from 'react';
+import {RPGCtxProvider} from './context/RPGContext';
 import WelcomeWindow from './components/WelcomeWindow';
 import NameInput from './components/NameInput';
 import characterData from './utils/data';
 import {downloadAsJSON} from './utils/helpers';
 import Button from './components/Button';
-import React from 'react';
 
 const App = (): JSX.Element => {
+  const [loadData, setLoadData] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
     const el = evt.target;
     const fileReader = new FileReader();
@@ -24,10 +27,15 @@ const App = (): JSX.Element => {
   const handleClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
     downloadAsJSON(characterData);
   };
+
   return (
-    <>
-      <WelcomeWindow />
-      {/* <Button type="file" onChange={handleChange}>
+    <RPGCtxProvider data={characterData}>
+      {showMenu ? <h1>TODO</h1> : <WelcomeWindow />}
+    </RPGCtxProvider>
+  );
+
+  /* <Button type="file" onChange={handleChange}>
+  <WelcomeWindow />
         Upload data
       </Button>
       <Button type="button" onClick={handleClick}>
@@ -42,9 +50,7 @@ const App = (): JSX.Element => {
         height="15px"
         roundedCorners={true}
         bevel
-      /> */}
-    </>
-  );
+      /> */
 };
 
 export default App;
