@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {RPGCtxProvider} from './context/RPGContext';
+import {useState, useContext} from 'react';
+import {RPGCtx, RPGCtxProvider} from './context/RPGContext';
 import WelcomeWindow from './components/WelcomeWindow';
 import NameInput from './components/NameInput';
 import characterData from './utils/data';
@@ -7,10 +7,11 @@ import {downloadAsJSON} from './utils/helpers';
 import Button from './components/Button';
 
 const App = (): JSX.Element => {
-  const [loadData, setLoadData] = useState(false);
+  const {state, dispatch} = useContext(RPGCtx);
   const [showMenu, setShowMenu] = useState(false);
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
+    console.log('work');
     const el = evt.target;
     const fileReader = new FileReader();
     if (el.files !== null && el.files.length > 0) {
@@ -28,9 +29,20 @@ const App = (): JSX.Element => {
     downloadAsJSON(characterData);
   };
 
+  const handleNewCharacter = (): void => {
+    setShowMenu(true);
+  };
+
   return (
-    <RPGCtxProvider data={characterData}>
-      {showMenu ? <h1>TODO</h1> : <WelcomeWindow />}
+    <RPGCtxProvider>
+      {showMenu ? (
+        <h1>{JSON.stringify(state)}</h1>
+      ) : (
+        <WelcomeWindow
+          onNewCharacter={handleNewCharacter}
+          onChange={handleChange}
+        />
+      )}
     </RPGCtxProvider>
   );
 

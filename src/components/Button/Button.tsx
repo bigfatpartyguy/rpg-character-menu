@@ -24,7 +24,7 @@ const FileButton = ({
   return (
     <div className={className} tabIndex={0}>
       <label htmlFor="fileInput">{children}</label>
-      <input type="file" id="fileInput" onChange={onChange} />
+      <input type="file" id="fileInput" onChange={onChange} accept=".json" />
     </div>
   );
 };

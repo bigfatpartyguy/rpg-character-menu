@@ -1,7 +1,11 @@
 import Button from '../Button';
 import styled from 'styled-components';
 
-const WelcomeWindow = ({className}: WelcomeWindowProps): JSX.Element => {
+const WelcomeWindow = ({
+  className,
+  onNewCharacter,
+  onChange,
+}: WelcomeWindowProps): JSX.Element => {
   return (
     <section className={className}>
       <h1>Добро пожаловать в меню RPG персонажа</h1>
@@ -10,8 +14,12 @@ const WelcomeWindow = ({className}: WelcomeWindowProps): JSX.Element => {
         характеристиками персонажа
       </h3>
       <div className="buttons">
-        <Button type="button">Новый персонаж</Button>
-        <Button type="file">Загрузить настройки</Button>
+        <Button type="button" onClick={onNewCharacter}>
+          Новый персонаж
+        </Button>
+        <Button type="file" onChange={onChange}>
+          Загрузить настройки
+        </Button>
       </div>
     </section>
   );
@@ -48,6 +56,8 @@ const StyledWelcomeWindow = styled(WelcomeWindow)`
 
 interface WelcomeWindowProps {
   className?: string;
+  onNewCharacter: () => void;
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default StyledWelcomeWindow;
