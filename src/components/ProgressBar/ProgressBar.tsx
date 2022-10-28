@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ProgressBar = ({
   progress,
-  width,
+  max,
   bgColor,
   progressColor,
   height,
@@ -11,15 +11,16 @@ const ProgressBar = ({
   bevel,
 }: ProgressProps): JSX.Element => {
   return (
-    <StyledPBContainer width={width} bevel={bevel}>
+    <StyledPBContainer bevel={bevel}>
       <ThirdPartyPB
         completed={progress}
+        maxCompleted={max}
         transitionDuration={'0.3s'}
         bgColor={progressColor}
         baseBgColor={bgColor}
         height={height}
         isLabelVisible={false}
-        borderRadius={roundedCorners ? '50px' : '0'}
+        borderRadius={roundedCorners !== undefined ? '50px' : '0'}
       />
     </StyledPBContainer>
   );
@@ -28,8 +29,6 @@ const ProgressBar = ({
 // STYLES
 
 const StyledPBContainer = styled.div<StyledPBContainerProps>`
-  width: ${({width}) => width};
-
   div div {
     clip-path: ${(props) =>
       props.bevel !== undefined
@@ -54,16 +53,15 @@ const StyledPBContainer = styled.div<StyledPBContainerProps>`
 
 interface StyledPBContainerProps {
   bevel?: boolean;
-  width: string;
 }
 
 interface ProgressProps {
-  width: string;
   progress: number;
+  max: number;
   bgColor: string;
   progressColor: string;
   height: string;
-  roundedCorners: boolean;
+  roundedCorners?: boolean;
   bevel?: boolean;
 }
 
