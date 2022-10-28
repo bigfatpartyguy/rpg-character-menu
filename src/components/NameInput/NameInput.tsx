@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 
-const NameInput = ({color}: NameInputProps): JSX.Element => {
-  return <StyledInput type="text" placeholder="Character name" color={color} />;
+const NameInput = ({value, onChange}: NameInputProps): JSX.Element => {
+  return (
+    <StyledInput
+      value={value}
+      onChange={onChange}
+      type="text"
+      placeholder="Character name"
+    />
+  );
 };
 
 // STYLES
 
-const StyledInput = styled.input<StyledInputProps>`
+const StyledInput = styled.input`
   background: none;
   padding: 5px;
   font-size: 3em;
   border: none;
-  color: ${({color}) => color};
+  color: var(--color-white);
 
   :focus {
     border: none;
@@ -19,19 +26,16 @@ const StyledInput = styled.input<StyledInputProps>`
   }
 
   ::placeholder {
-    color: ${({color}) => color};
+    color: var(--color-white);
     opacity: 0.2;
   }
 `;
 
 // TYPES
 
-interface StyledInputProps {
-  color: string;
-}
-
 interface NameInputProps {
-  color: string;
+  value: string;
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default NameInput;

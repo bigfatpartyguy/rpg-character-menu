@@ -1,5 +1,5 @@
 const characterData = {
-  name: '',
+  name: 'Legolas',
   level: 0,
   strength: {
     value: 0,
@@ -31,6 +31,9 @@ const characterData = {
       intimidation: 0,
     },
   },
+  health: 3,
+  dodge: 10,
+  energy: 0,
 };
 
 export default characterData;

@@ -1,6 +1,7 @@
 import {useState, useContext} from 'react';
 import {RPGCtx, RPGCtxProvider} from './context/RPGContext';
 import WelcomeWindow from './components/WelcomeWindow';
+import CharacterMenu from './components/CharacterMenu';
 import NameInput from './components/NameInput';
 import characterData from './utils/data';
 import {downloadAsJSON} from './utils/helpers';
@@ -36,7 +37,7 @@ const App = (): JSX.Element => {
   return (
     <RPGCtxProvider>
       {showMenu ? (
-        <h1>{JSON.stringify(state)}</h1>
+        <CharacterMenu />
       ) : (
         <WelcomeWindow
           onNewCharacter={handleNewCharacter}
