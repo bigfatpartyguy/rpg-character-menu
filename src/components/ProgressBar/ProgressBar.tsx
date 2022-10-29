@@ -11,13 +11,15 @@ const ProgressBar = ({
   bevel,
 }: ProgressProps): JSX.Element => {
   return (
-    <StyledPBContainer bevel={bevel}>
+    <StyledPBContainer
+      bevel={bevel}
+      progressColor={progressColor}
+      bgColor={bgColor}
+    >
       <ThirdPartyPB
         completed={progress}
         maxCompleted={max}
         transitionDuration={'0.3s'}
-        bgColor={progressColor}
-        baseBgColor={bgColor}
         height={height}
         isLabelVisible={false}
         borderRadius={roundedCorners !== undefined ? '50px' : '0'}
@@ -46,6 +48,10 @@ const StyledPBContainer = styled.div<StyledPBContainerProps>`
   }
   div div div {
     clip-path: none;
+    background-color: var(${(props) => props.progressColor}) !important;
+  }
+  div div {
+    background-color: var(${(props) => props.bgColor}) !important;
   }
 `;
 
@@ -53,6 +59,8 @@ const StyledPBContainer = styled.div<StyledPBContainerProps>`
 
 interface StyledPBContainerProps {
   bevel?: boolean;
+  progressColor: string;
+  bgColor: string;
 }
 
 interface ProgressProps {

@@ -14,12 +14,12 @@ const BaseStatsBar = ({
 }: BaseStatsBarProps): JSX.Element => {
   return (
     <div className={className}>
-      <h3>{name}</h3>
+      <h4>{name}</h4>
       <ProgressBar
         progress={value}
         max={maxValue}
-        bevel={bevel !== undefined}
-        roundedCorners={roundedCorners !== undefined}
+        bevel={bevel}
+        roundedCorners={roundedCorners}
         bgColor={bgProgressColor}
         progressColor={color}
         height={height}
@@ -27,6 +27,29 @@ const BaseStatsBar = ({
     </div>
   );
 };
+
+// STYLES
+
+const StyledBaseStatsBar = styled(BaseStatsBar)`
+  display: flex;
+  align-items: center;
+
+  > * {
+    display: inline-block;
+  }
+  h4 {
+    margin: 15px 0;
+    color: var(${(props) => props.color});
+    flex-grow: 1;
+    flex-basis: 20%;
+    min-width: 200px;
+  }
+
+  > :last-child {
+    min-width: 50px;
+    width: 80%;
+  }
+`;
 
 // TYPES
 
@@ -39,7 +62,7 @@ interface BaseStatsBarProps {
   height: string;
   roundedCorners?: boolean;
   bevel?: boolean;
-  className: string;
+  className?: string;
 }
 
-export default BaseStatsBar;
+export default StyledBaseStatsBar;

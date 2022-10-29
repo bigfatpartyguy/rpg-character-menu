@@ -2,7 +2,7 @@ const characterData = {
   name: 'Legolas',
   level: 0,
   strength: {
-    value: 0,
+    value: 2,
     stats: {
       attack: 0,
     },
