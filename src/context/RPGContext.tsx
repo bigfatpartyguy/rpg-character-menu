@@ -10,7 +10,7 @@ import {
 import initialState from '../utils/data';
 
 type ActionProps =
-  | {type: typeof LOAD_DATA; payload: Object}
+  | {type: typeof LOAD_DATA; payload: typeof initialState}
   | {type: typeof CHANGE_NAME; payload: string}
   | {type: typeof SET_LEVEL; payload: number}
   | {type: typeof INCREMENT_ATTRIBUTE; payload: string}
@@ -23,7 +23,7 @@ const reducer = (
 ): typeof initialState => {
   switch (action.type) {
     case LOAD_DATA:
-      return state;
+      return action.payload;
     case CHANGE_NAME:
       return {...state, name: action.payload};
     case SET_LEVEL:

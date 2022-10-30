@@ -1,3 +1,4 @@
+import characterData from './data';
 const downloadAsJSON = (obj: Object): void => {
   const dataURI = `data:text/json;chatset=utf-8,${encodeURIComponent(
     JSON.stringify(obj)
@@ -7,6 +8,34 @@ const downloadAsJSON = (obj: Object): void => {
   link.href = dataURI;
   link.download = 'data.json';
   link.click();
+};
+
+const checkData = (data: typeof characterData): boolean => {
+  console.log('checking data');
+  const schema = JSON.stringify(Object.keys(characterData));
+  const loadedDataSchema = JSON.stringify(Object.keys(data));
+  const attributeDeps = {
+    strength: ['attack'],
+    dexterity: ['stealth', 'archery'],
+    intelligence: ['learnability', 'survival', 'medicine'],
+    charisma: ['appearance', 'manipulation', 'insight', 'intimidation'],
+  };
+  if (schema !== loadedDataSchema) {
+    console.log('schemas dont match');
+    return false;
+  }
+  Object.keys(attributeDeps).forEach((mainAttribute) => {
+    attributeDeps[mainAttribute as keyof typeof attributeDeps].forEach(
+      (dep) => {
+        if (
+          data[dep as keyof typeof data] >
+          data[mainAttribute as keyof typeof data]
+        )
+          return false;
+      }
+    );
+  });
+  return true;
 };
 
 const getSubAttributes = (attribute: string): string[] => {
@@ -74,6 +103,7 @@ const getBaseStats = (
 
 export {
   downloadAsJSON,
+  checkData,
   calculateLevel,
   getLevelRank,
   getBaseStats,
