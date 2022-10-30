@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import styled from 'styled-components';
 import {RPGCtx} from '../../context/RPGContext';
-import {changeName} from '../../context/actionTypes';
+import {changeName, incrementDamage} from '../../context/actionTypes';
 import NameInput from '../NameInput';
 import CharacterLevel from '../CharacterLevel';
 import BaseStatsBar from '../BaseStatsBar';
@@ -11,11 +11,21 @@ import {downloadAsJSON, getBaseStats} from '../../utils/helpers';
 
 const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
   const {
-    state: {name, strength: s, dexterity: d, intelligence: i, charisma: c},
+    state: {name, strength, dexterity, intelligence, damage},
     state,
     dispatch,
   } = useContext(RPGCtx);
-  const {health, dodge, energy} = getBaseStats(s, d, i);
+  const {health, dodge, energy} = getBaseStats(
+    strength,
+    dexterity,
+    intelligence,
+    damage
+  );
+
+  const handleDamage = (): void => {
+    dispatch(incrementDamage());
+  };
+
   return (
     <div className={className}>
       <NameInput
@@ -58,7 +68,9 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
       <hr />
       <AttributePoints />
       <div className="footer-buttons">
-        <Button type="button">Получить урон</Button>
+        <Button type="button" onClick={handleDamage}>
+          Получить урон
+        </Button>
         <Button type="button" onClick={() => downloadAsJSON(state)}>
           Скачать данные
         </Button>

@@ -12,29 +12,46 @@ import {calculateLevel, getSubAttributes} from '../../utils/helpers';
 const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
   const {
     state: {
-      strength: s,
-      attack,
-      dexterity: d,
-      stealth,
-      archery,
-      intelligence: i,
-      learnability,
-      survival,
-      medicine,
-      charisma: c,
-      appearance,
-      manipulation,
-      insight,
-      intimidation,
+      strength: str,
+      attack: att,
+      dexterity: dex,
+      stealth: ste,
+      archery: arc,
+      intelligence: int,
+      learnability: lea,
+      survival: sur,
+      medicine: med,
+      charisma: cha,
+      appearance: app,
+      manipulation: man,
+      insight: ins,
+      intimidation: inti,
     },
     state,
     dispatch,
   } = useContext(RPGCtx);
 
   useEffect(() => {
-    const {level} = calculateLevel(s, d, i, c);
+    const {level} = calculateLevel(
+      Object.values([
+        str,
+        att,
+        dex,
+        ste,
+        arc,
+        int,
+        lea,
+        sur,
+        med,
+        cha,
+        app,
+        man,
+        ins,
+        inti,
+      ])
+    );
     dispatch(setLevel(level));
-  }, [s, d, i, c]);
+  }, [str, att, dex, ste, arc, int, lea, sur, med, cha, app, man, ins, inti]);
 
   const handleIncrementAttribute = (attribute: string): void => {
     dispatch(incrementAttribute(attribute));
@@ -78,7 +95,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('strength')}
         onDecrementClick={() => handleDecrementAttribute('strength')}
         className="strength"
-        points={s}
+        points={str}
       >
         Сила
       </PointsController>
@@ -88,7 +105,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('attack')}
         className="attack"
-        points={attack}
+        points={att}
       >
         Атака
       </PointsController>
@@ -97,7 +114,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('dexterity')}
         onDecrementClick={() => handleDecrementAttribute('dexterity')}
         className="dexterity"
-        points={d}
+        points={dex}
       >
         Ловкость
       </PointsController>
@@ -107,7 +124,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('stealth')}
         className="stealth"
-        points={stealth}
+        points={ste}
       >
         Стелс
       </PointsController>
@@ -117,7 +134,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('archery')}
         className="archery"
-        points={archery}
+        points={arc}
       >
         Стрельба из лука
       </PointsController>
@@ -126,7 +143,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('intelligence')}
         onDecrementClick={() => handleDecrementAttribute('intelligence')}
         className="intelligence"
-        points={i}
+        points={int}
       >
         Интелект
       </PointsController>
@@ -136,7 +153,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('learnability')}
         className="learnability"
-        points={learnability}
+        points={lea}
       >
         Обучаемость
       </PointsController>
@@ -146,7 +163,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('survival')}
         className="survival"
-        points={survival}
+        points={sur}
       >
         Выживание
       </PointsController>
@@ -156,7 +173,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('medicine')}
         className="medicine"
-        points={medicine}
+        points={med}
       >
         Медицина
       </PointsController>
@@ -165,7 +182,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('charisma')}
         onDecrementClick={() => handleDecrementAttribute('charisma')}
         className="charisma"
-        points={c}
+        points={cha}
       >
         Харизма
       </PointsController>
@@ -175,7 +192,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('intimidation')}
         className="intimidation"
-        points={intimidation}
+        points={inti}
       >
         Запугивание
       </PointsController>
@@ -185,7 +202,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('insight')}
         className="insight"
-        points={insight}
+        points={ins}
       >
         Проницательность
       </PointsController>
@@ -195,7 +212,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('appearance')}
         className="appearance"
-        points={appearance}
+        points={app}
       >
         Внешний вид
       </PointsController>
@@ -205,7 +222,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         }
         onDecrementClick={() => handleDecrementSubAttribue('manipulation')}
         className="manipulation"
-        points={manipulation}
+        points={man}
       >
         Манипулирование
       </PointsController>

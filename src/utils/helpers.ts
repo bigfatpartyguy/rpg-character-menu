@@ -21,35 +21,26 @@ const getSubAttributes = (attribute: string): string[] => {
 
 /**
  *
- * @param s - sthrength
- * @param d - dexterity
- * @param i - intelligence
- * @param c - charisma
+ * @param stats - array of stats
  * @returns  \{level, progress\}
  */
-const calculateLevel = (
-  s: number,
-  d: number,
-  i: number,
-  c: number
-): {level: number; progress: number} => {
-  const sum = s + d + i + c;
-  const progress = (sum % 10) * 10;
-  console.log(sum, progress);
+const calculateLevel = (stats: number[]): {level: number; progress: number} => {
+  const sum = stats.reduce((sum, cur) => sum + cur, 0);
+  const progress = Math.floor((sum / 20) * 100) % 100;
   switch (true) {
-    case sum < 10:
-      return {level: 0, progress};
     case sum < 20:
-      return {level: 1, progress};
-    case sum < 30:
-      return {level: 2, progress};
+      return {level: 0, progress};
     case sum < 40:
-      return {level: 3, progress};
-    case sum < 50:
-      return {level: 4, progress};
+      return {level: 1, progress};
     case sum < 60:
+      return {level: 2, progress};
+    case sum < 80:
+      return {level: 3, progress};
+    case sum < 100:
+      return {level: 4, progress};
+    case sum < 120:
       return {level: 5, progress};
-    case sum >= 60:
+    case sum >= 140:
       return {level: 5, progress: 100};
     default:
       throw new Error();
@@ -69,14 +60,15 @@ const getLevelRank = (level: number): string => {
 };
 
 const getBaseStats = (
-  s: number,
-  d: number,
-  i: number
+  strength: number,
+  dexterity: number,
+  intelligence: number,
+  damage: number
 ): {health: number; dodge: number; energy: number} => {
   return {
-    health: s + 3,
-    dodge: d + 10,
-    energy: d + i,
+    health: strength + 3 - damage,
+    dodge: dexterity + 10,
+    energy: dexterity + intelligence,
   };
 };
 

@@ -5,6 +5,7 @@ import {
   SET_LEVEL,
   INCREMENT_ATTRIBUTE,
   DECREMENT_ATTRIBUTE,
+  INCREMENT_DAMAGE,
 } from './actionTypes';
 import initialState from '../utils/data';
 
@@ -13,7 +14,8 @@ type ActionProps =
   | {type: typeof CHANGE_NAME; payload: string}
   | {type: typeof SET_LEVEL; payload: number}
   | {type: typeof INCREMENT_ATTRIBUTE; payload: string}
-  | {type: typeof DECREMENT_ATTRIBUTE; payload: string};
+  | {type: typeof DECREMENT_ATTRIBUTE; payload: string}
+  | {type: typeof INCREMENT_DAMAGE};
 
 const reducer = (
   state: typeof initialState,
@@ -39,6 +41,11 @@ const reducer = (
         [action.payload as keyof typeof state]: --state[
           action.payload as keyof typeof state
         ],
+      };
+    case INCREMENT_DAMAGE:
+      return {
+        ...state,
+        damage: ++state.damage,
       };
     default:
       throw new Error();

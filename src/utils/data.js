@@ -18,6 +18,7 @@ const characterData = {
   health: 3,
   dodge: 10,
   energy: 0,
+  damage: 0,
 };
 
 export default characterData;
