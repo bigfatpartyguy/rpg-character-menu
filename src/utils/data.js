@@ -18,7 +18,7 @@ const characterData = {
     value: 0,
     stats: {
       learnability: 0,
-      sirvival: 0,
+      survival: 0,
       medicine: 0,
     },
   },

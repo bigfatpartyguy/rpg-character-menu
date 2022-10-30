@@ -4,6 +4,7 @@ import {changeName} from '../../context/actionTypes';
 import NameInput from '../NameInput';
 import CharacterLevel from '../CharacterLevel';
 import BaseStatsBar from '../BaseStatsBar';
+import PointsController from '../PointsController';
 import styled from 'styled-components';
 import {getBaseStats} from '../../utils/helpers';
 
@@ -14,6 +15,7 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
       strength: {value: s},
       dexterity: {value: d},
       intelligence: {value: i},
+      charisma: {value: c},
     },
     dispatch,
   } = useContext(RPGCtx);
@@ -58,7 +60,6 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
         </div>
       </div>
       <hr />
-      <div></div>
     </div>
   );
 };
