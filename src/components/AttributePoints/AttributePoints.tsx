@@ -1,31 +1,40 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import PointsController from '../PointsController';
 import {RPGCtx} from '../../context/RPGContext';
 import {
+  setLevel,
   decrementAttribute,
   incrementAttribute,
 } from '../../context/actionTypes';
-import {getSubAttributes} from '../../utils/helpers';
+import {calculateLevel, getSubAttributes} from '../../utils/helpers';
 
 const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
-  const {state, dispatch} = useContext(RPGCtx);
   const {
-    strength,
-    attack,
-    dexterity,
-    stealth,
-    archery,
-    intelligence,
-    learnability,
-    survival,
-    medicine,
-    charisma,
-    appearance,
-    manipulation,
-    insight,
-    intimidation,
-  } = state;
+    state: {
+      strength: s,
+      attack,
+      dexterity: d,
+      stealth,
+      archery,
+      intelligence: i,
+      learnability,
+      survival,
+      medicine,
+      charisma: c,
+      appearance,
+      manipulation,
+      insight,
+      intimidation,
+    },
+    state,
+    dispatch,
+  } = useContext(RPGCtx);
+
+  useEffect(() => {
+    const {level} = calculateLevel(s, d, i, c);
+    dispatch(setLevel(level));
+  }, [s, d, i, c]);
 
   const handleIncrementAttribute = (attribute: string): void => {
     dispatch(incrementAttribute(attribute));
@@ -69,7 +78,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('strength')}
         onDecrementClick={() => handleDecrementAttribute('strength')}
         className="strength"
-        points={strength}
+        points={s}
       >
         Сила
       </PointsController>
@@ -88,7 +97,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('dexterity')}
         onDecrementClick={() => handleDecrementAttribute('dexterity')}
         className="dexterity"
-        points={dexterity}
+        points={d}
       >
         Ловкость
       </PointsController>
@@ -117,7 +126,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('intelligence')}
         onDecrementClick={() => handleDecrementAttribute('intelligence')}
         className="intelligence"
-        points={intelligence}
+        points={i}
       >
         Интелект
       </PointsController>
@@ -156,7 +165,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
         onIncrementClick={() => handleIncrementAttribute('charisma')}
         onDecrementClick={() => handleDecrementAttribute('charisma')}
         className="charisma"
-        points={charisma}
+        points={c}
       >
         Харизма
       </PointsController>

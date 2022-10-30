@@ -2,7 +2,7 @@ import React, {useState, useReducer} from 'react';
 import {
   LOAD_DATA,
   CHANGE_NAME,
-  INCREMENT_LEVEL,
+  SET_LEVEL,
   INCREMENT_ATTRIBUTE,
   DECREMENT_ATTRIBUTE,
 } from './actionTypes';
@@ -11,7 +11,7 @@ import initialState from '../utils/data';
 type ActionProps =
   | {type: typeof LOAD_DATA; payload: Object}
   | {type: typeof CHANGE_NAME; payload: string}
-  | {type: typeof INCREMENT_LEVEL}
+  | {type: typeof SET_LEVEL; payload: number}
   | {type: typeof INCREMENT_ATTRIBUTE; payload: string}
   | {type: typeof DECREMENT_ATTRIBUTE; payload: string};
 
@@ -24,8 +24,8 @@ const reducer = (
       return state;
     case CHANGE_NAME:
       return {...state, name: action.payload};
-    case INCREMENT_LEVEL:
-      return {...state, level: state.level + 1};
+    case SET_LEVEL:
+      return {...state, level: action.payload};
     case INCREMENT_ATTRIBUTE:
       return {
         ...state,

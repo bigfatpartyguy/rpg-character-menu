@@ -6,9 +6,9 @@ import {calculateLevel, getLevelRank} from '../../utils/helpers';
 
 const CharacterLevel = ({className}: CharacterLevelProps): JSX.Element => {
   const {
-    state: {strength: s, dexterity: d, intelligence: i, charisma: c},
+    state: {level, strength: s, dexterity: d, intelligence: i, charisma: c},
   } = useContext(RPGCtx);
-  const {level, progress} = calculateLevel(s, d, i, c);
+  const {progress} = calculateLevel(s, d, i, c);
   return (
     <div className={className}>
       <div className="level">

@@ -1,16 +1,18 @@
 import {useContext} from 'react';
+import styled from 'styled-components';
 import {RPGCtx} from '../../context/RPGContext';
 import {changeName} from '../../context/actionTypes';
 import NameInput from '../NameInput';
 import CharacterLevel from '../CharacterLevel';
 import BaseStatsBar from '../BaseStatsBar';
 import AttributePoints from '../AttributePoints';
-import styled from 'styled-components';
-import {getBaseStats} from '../../utils/helpers';
+import Button from '../Button';
+import {downloadAsJSON, getBaseStats} from '../../utils/helpers';
 
 const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
   const {
     state: {name, strength: s, dexterity: d, intelligence: i, charisma: c},
+    state,
     dispatch,
   } = useContext(RPGCtx);
   const {health, dodge, energy} = getBaseStats(s, d, i);
@@ -55,6 +57,12 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
       </div>
       <hr />
       <AttributePoints />
+      <div className="footer-buttons">
+        <Button type="button">Получить урон</Button>
+        <Button type="button" onClick={() => downloadAsJSON(state)}>
+          Скачать данные
+        </Button>
+      </div>
     </div>
   );
 };
@@ -82,6 +90,15 @@ const StyledCharacterMenu = styled(CharacterMenu)`
     }
   }
   hr {
+  }
+  .footer-buttons {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    > * {
+      flex: 1 1 50%;
+      margin: 20px;
+    }
   }
 `;
 

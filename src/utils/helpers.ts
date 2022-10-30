@@ -9,6 +9,16 @@ const downloadAsJSON = (obj: Object): void => {
   link.click();
 };
 
+const getSubAttributes = (attribute: string): string[] => {
+  const subAttributes = {
+    strength: ['attack'],
+    dexterity: ['stealth', 'archery'],
+    intelligence: ['learnability', 'survival', 'medicine'],
+    charisma: ['appearance', 'manipulation', 'insight', 'intimidation'],
+  };
+  return subAttributes[attribute as keyof typeof subAttributes];
+};
+
 /**
  *
  * @param s - sthrength
@@ -68,16 +78,6 @@ const getBaseStats = (
     dodge: d + 10,
     energy: d + i,
   };
-};
-
-const getSubAttributes = (attribute: string): string[] => {
-  const subAttributes = {
-    strength: ['attack'],
-    dexterity: ['stealth', 'archery'],
-    intelligence: ['learnability', 'survival', 'medicine'],
-    charisma: ['appearance', 'manipulation', 'insight', 'intimidation'],
-  };
-  return subAttributes[attribute as keyof typeof subAttributes];
 };
 
 export {

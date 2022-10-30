@@ -1,6 +1,6 @@
 const LOAD_DATA = 'LOAD_DATA';
 const CHANGE_NAME = 'CHANGE_NAME';
-const INCREMENT_LEVEL = 'INCREMENT_LEVEL';
+const SET_LEVEL = 'SET_LEVEL';
 const INCREMENT_ATTRIBUTE = 'INCREMENT_ATTRIBUTE';
 const DECREMENT_ATTRIBUTE = 'DECREMENT_ATTRIBUTE';
 
@@ -14,8 +14,9 @@ const changeName = (name: string): Object => ({
   payload: name,
 });
 
-const incrementLevel = (): Object => ({
-  type: INCREMENT_LEVEL,
+const setLevel = (level: number): Object => ({
+  type: SET_LEVEL,
+  payload: level,
 });
 
 const incrementAttribute = (attribute: string): Object => ({
@@ -31,12 +32,12 @@ const decrementAttribute = (attribute: string): Object => ({
 export {
   LOAD_DATA,
   CHANGE_NAME,
-  INCREMENT_LEVEL,
+  SET_LEVEL,
   INCREMENT_ATTRIBUTE,
   DECREMENT_ATTRIBUTE,
   loadData,
   changeName,
-  incrementLevel,
+  setLevel,
   incrementAttribute,
   decrementAttribute,
 };
