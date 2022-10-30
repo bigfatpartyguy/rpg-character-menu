@@ -4,19 +4,13 @@ import {changeName} from '../../context/actionTypes';
 import NameInput from '../NameInput';
 import CharacterLevel from '../CharacterLevel';
 import BaseStatsBar from '../BaseStatsBar';
-import PointsController from '../PointsController';
+import AttributePoints from '../AttributePoints';
 import styled from 'styled-components';
 import {getBaseStats} from '../../utils/helpers';
 
 const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
   const {
-    state: {
-      name,
-      strength: {value: s},
-      dexterity: {value: d},
-      intelligence: {value: i},
-      charisma: {value: c},
-    },
+    state: {name, strength: s, dexterity: d, intelligence: i, charisma: c},
     dispatch,
   } = useContext(RPGCtx);
   const {health, dodge, energy} = getBaseStats(s, d, i);
@@ -36,7 +30,7 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
           <BaseStatsBar
             name="Здоровье"
             value={health}
-            maxValue={100}
+            maxValue={50}
             bgProgressColor="--color-dark-700"
             color="--color-cyan-100"
             height="15px"
@@ -44,7 +38,7 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
           <BaseStatsBar
             name="Уклонение"
             value={dodge}
-            maxValue={100}
+            maxValue={50}
             bgProgressColor="--color-dark-700"
             color="--color-lavender-200"
             height="15px"
@@ -52,7 +46,7 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
           <BaseStatsBar
             name="Энергичность"
             value={energy}
-            maxValue={100}
+            maxValue={50}
             bgProgressColor="--color-dark-700"
             color="--color-yellow-light"
             height="15px"
@@ -60,6 +54,7 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
         </div>
       </div>
       <hr />
+      <AttributePoints />
     </div>
   );
 };

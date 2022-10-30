@@ -5,15 +5,15 @@ const PointsController = ({
   className,
   points,
   children,
-  onLeftClick,
-  onRightClick,
+  onIncrementClick,
+  onDecrementClick,
 }: PointsControllerProps): JSX.Element => {
   return (
     <div className={className}>
       <div className="controller">
-        <GoTriangleLeft onClick={onLeftClick} />
+        <GoTriangleLeft onClick={onDecrementClick} />
         <h2 className="points">{points}</h2>
-        <GoTriangleRight onClick={onRightClick} />
+        <GoTriangleRight onClick={onIncrementClick} />
       </div>
       <p className="name">{children}</p>
     </div>
@@ -53,8 +53,8 @@ interface PointsControllerProps {
   className?: string;
   points: number;
   children: string;
-  onLeftClick: (evt: React.MouseEvent<SVGElement>) => void;
-  onRightClick: (evt: React.MouseEvent<SVGElement>) => void;
+  onIncrementClick: (evt: React.MouseEvent<SVGElement>) => void;
+  onDecrementClick: (evt: React.MouseEvent<SVGElement>) => void;
 }
 
 export default StyledPointsController;

@@ -70,4 +70,20 @@ const getBaseStats = (
   };
 };
 
-export {downloadAsJSON, calculateLevel, getLevelRank, getBaseStats};
+const getSubAttributes = (attribute: string): string[] => {
+  const subAttributes = {
+    strength: ['attack'],
+    dexterity: ['stealth', 'archery'],
+    intelligence: ['learnability', 'survival', 'medicine'],
+    charisma: ['appearance', 'manipulation', 'insight', 'intimidation'],
+  };
+  return subAttributes[attribute as keyof typeof subAttributes];
+};
+
+export {
+  downloadAsJSON,
+  calculateLevel,
+  getLevelRank,
+  getBaseStats,
+  getSubAttributes,
+};

@@ -1,11 +1,19 @@
 import React, {useState, useReducer} from 'react';
-import {LOAD_DATA, CHANGE_NAME, INCREMENT_LEVEL} from './actionTypes';
+import {
+  LOAD_DATA,
+  CHANGE_NAME,
+  INCREMENT_LEVEL,
+  INCREMENT_ATTRIBUTE,
+  DECREMENT_ATTRIBUTE,
+} from './actionTypes';
 import initialState from '../utils/data';
 
 type ActionProps =
   | {type: typeof LOAD_DATA; payload: Object}
   | {type: typeof CHANGE_NAME; payload: string}
-  | {type: typeof INCREMENT_LEVEL};
+  | {type: typeof INCREMENT_LEVEL}
+  | {type: typeof INCREMENT_ATTRIBUTE; payload: string}
+  | {type: typeof DECREMENT_ATTRIBUTE; payload: string};
 
 const reducer = (
   state: typeof initialState,
@@ -18,6 +26,20 @@ const reducer = (
       return {...state, name: action.payload};
     case INCREMENT_LEVEL:
       return {...state, level: state.level + 1};
+    case INCREMENT_ATTRIBUTE:
+      return {
+        ...state,
+        [action.payload as keyof typeof state]: ++state[
+          action.payload as keyof typeof state
+        ],
+      };
+    case DECREMENT_ATTRIBUTE:
+      return {
+        ...state,
+        [action.payload as keyof typeof state]: --state[
+          action.payload as keyof typeof state
+        ],
+      };
     default:
       throw new Error();
   }
