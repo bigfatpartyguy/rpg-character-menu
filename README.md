@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Тестовое задание: меню RPG персонажа
 
+[🎮Demo](http://bigfatpartyguy.github.io/rpg-character-menu)
+
 ![screenshot](banner.jpg)
 
 ## Описание
