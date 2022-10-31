@@ -235,7 +235,7 @@ const AttributePoints = ({className}: AttributePointsProps): JSX.Element => {
 const StyledAttributePoints = styled(AttributePoints)`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
+  grid-gap: 20px;
 
   .dexterity {
     grid-area: 2 / 1 / 3 / 2;

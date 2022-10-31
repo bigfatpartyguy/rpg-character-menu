@@ -27,13 +27,24 @@ const StyledPointsController = styled(PointsController)`
   .controller {
     width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     > * {
-      margin: auto;
+      margin: 1px;
     }
 
     svg {
       fill: var(--color-white);
+      box-sizing: content-box;
       cursor: pointer;
+      padding: 5px;
+      font-size: 1.2em;
+      :hover {
+        fill var(--color-yellow-light);
+      }
+      :active {
+        fill var(--color-orange)
+      }
     }
     .points {
       margin: 0;

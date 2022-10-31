@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useRef} from 'react';
 import styled from 'styled-components';
 import {RPGCtx} from '../../context/RPGContext';
 import {changeName, incrementDamage} from '../../context/actionTypes';
@@ -21,9 +21,20 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
     intelligence,
     damage
   );
+  const damageOverlay = useRef<HTMLDivElement>(null);
 
   const handleDamage = (): void => {
-    dispatch(incrementDamage());
+    if (health > 0) {
+      if (damageOverlay.current !== null) {
+        damageOverlay.current.classList.toggle('hidden');
+        setTimeout(() => {
+          if (damageOverlay.current !== null) {
+            damageOverlay.current.classList.toggle('hidden');
+          }
+        }, 300);
+      }
+      dispatch(incrementDamage());
+    }
   };
 
   return (
@@ -75,6 +86,7 @@ const CharacterMenu = ({className}: CharacterMenuProps): JSX.Element => {
           Скачать данные
         </Button>
       </div>
+      <div ref={damageOverlay} className="damage-overlay hidden"></div>
     </div>
   );
 };
@@ -111,6 +123,19 @@ const StyledCharacterMenu = styled(CharacterMenu)`
       flex: 1 1 50%;
       margin: 20px;
     }
+  }
+  .damage-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    box-shadow: inset 0 0 100px red;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+  }
+  .hidden {
+    opacity: 0;
   }
 `;
 
