@@ -23,6 +23,7 @@ const reducer = (
 ): typeof initialState => {
   switch (action.type) {
     case LOAD_DATA:
+      console.log('loading data');
       return action.payload;
     case CHANGE_NAME:
       return {...state, name: action.payload};

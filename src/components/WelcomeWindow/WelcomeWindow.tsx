@@ -1,11 +1,37 @@
+import {useContext} from 'react';
+import {RPGCtx} from '../../context/RPGContext';
 import Button from '../Button';
 import styled from 'styled-components';
+import {checkData} from '../../utils/helpers';
+import {loadData} from '../../context/actionTypes';
 
 const WelcomeWindow = ({
   className,
-  onNewCharacter,
-  onChange,
+  openMenu,
 }: WelcomeWindowProps): JSX.Element => {
+  const {dispatch} = useContext(RPGCtx);
+  const handleLoadCharacterData = (
+    evt: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const el = evt.target;
+    const fileReader = new FileReader();
+    if (el.files !== null && el.files.length > 0) {
+      fileReader.readAsText(el.files[0], 'UTF-8');
+      fileReader.onload = (e) => {
+        if (typeof fileReader.result === 'string') {
+          const data = JSON.parse(fileReader.result);
+          if (checkData(data)) {
+            dispatch(loadData(data));
+            openMenu();
+          }
+        }
+      };
+    }
+  };
+
+  const handleNewCharacter = (): void => {
+    openMenu();
+  };
   return (
     <section className={className}>
       <h1>Добро пожаловать в меню RPG персонажа</h1>
@@ -14,10 +40,10 @@ const WelcomeWindow = ({
         характеристиками персонажа
       </h3>
       <div className="buttons">
-        <Button type="button" onClick={onNewCharacter}>
+        <Button type="button" onClick={handleNewCharacter}>
           Новый персонаж
         </Button>
-        <Button type="file" onChange={onChange}>
+        <Button type="file" onChange={handleLoadCharacterData}>
           Загрузить настройки
         </Button>
       </div>
@@ -56,8 +82,7 @@ const StyledWelcomeWindow = styled(WelcomeWindow)`
 
 interface WelcomeWindowProps {
   className?: string;
-  onNewCharacter: () => void;
-  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  openMenu: () => void;
 }
 
 export default StyledWelcomeWindow;

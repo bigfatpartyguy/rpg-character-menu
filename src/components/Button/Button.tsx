@@ -20,7 +20,6 @@ const FileButton = ({
   children,
   onChange,
 }: FileButtonProps): JSX.Element => {
-  console.log(typeof children);
   return (
     <div className={className} tabIndex={0}>
       <label htmlFor="fileInput">{children}</label>

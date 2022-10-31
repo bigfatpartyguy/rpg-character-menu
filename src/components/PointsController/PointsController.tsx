@@ -23,6 +23,7 @@ const PointsController = ({
 // STYLES
 
 const StyledPointsController = styled(PointsController)`
+  user-select: none;
   .controller {
     width: 100%;
     display: flex;
