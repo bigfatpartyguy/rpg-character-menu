@@ -1,7 +1,7 @@
 const characterData = {
-  name: 'Legolas',
+  name: '',
   level: 0,
-  strength: 2,
+  strength: 0,
   attack: 0,
   dexterity: 0,
   stealth: 0,
@@ -15,8 +15,8 @@ const characterData = {
   manipulation: 0,
   insight: 0,
   intimidation: 0,
-  health: 3,
-  dodge: 10,
+  health: 0,
+  dodge: 0,
   energy: 0,
   damage: 0,
 };
