@@ -69,7 +69,7 @@ const calculateLevel = (stats: number[]): {level: number; progress: number} => {
       return {level: 4, progress};
     case sum < 120:
       return {level: 5, progress};
-    case sum >= 140:
+    case sum >= 120:
       return {level: 5, progress: 100};
     default:
       throw new Error();
