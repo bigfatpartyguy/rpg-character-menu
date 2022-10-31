@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/rpg-character-menu/static/css/main.faec8c44.css",
+    "main.js": "/rpg-character-menu/static/js/main.bb72fd0a.js",
+    "index.html": "/rpg-character-menu/index.html",
+    "main.faec8c44.css.map": "/rpg-character-menu/static/css/main.faec8c44.css.map",
+    "main.bb72fd0a.js.map": "/rpg-character-menu/static/js/main.bb72fd0a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.faec8c44.css",
+    "static/js/main.bb72fd0a.js"
+  ]
+}
