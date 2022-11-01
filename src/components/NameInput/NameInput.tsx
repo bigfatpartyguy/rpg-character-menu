@@ -6,7 +6,7 @@ const NameInput = ({value, onChange}: NameInputProps): JSX.Element => {
       value={value}
       onChange={onChange}
       type="text"
-      placeholder="Character name"
+      placeholder="Введите имя"
     />
   );
 };
@@ -27,6 +27,7 @@ const StyledInput = styled.input`
 
   ::placeholder {
     color: var(--color-white);
+    font-size: 0.8em;
     opacity: 0.2;
   }
 `;
