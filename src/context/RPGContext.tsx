@@ -1,49 +1,41 @@
-import React, {useState, useReducer} from 'react';
-import {
-  LOAD_DATA,
-  CHANGE_NAME,
-  SET_LEVEL,
-  INCREMENT_ATTRIBUTE,
-  DECREMENT_ATTRIBUTE,
-  INCREMENT_DAMAGE,
-} from './actionTypes';
+import React, {useReducer} from 'react';
+import {ActionType} from './actionTypes';
 import initialState from '../utils/data';
 
 type ActionProps =
-  | {type: typeof LOAD_DATA; payload: typeof initialState}
-  | {type: typeof CHANGE_NAME; payload: string}
-  | {type: typeof SET_LEVEL; payload: number}
-  | {type: typeof INCREMENT_ATTRIBUTE; payload: string}
-  | {type: typeof DECREMENT_ATTRIBUTE; payload: string}
-  | {type: typeof INCREMENT_DAMAGE};
+  | {type: ActionType.LOAD_DATA; payload: typeof initialState}
+  | {type: ActionType.CHANGE_NAME; payload: string}
+  | {type: ActionType.SET_LEVEL; payload: number}
+  | {type: ActionType.INCREMENT_ATTRIBUTE; payload: string}
+  | {type: ActionType.DECREMENT_ATTRIBUTE; payload: string}
+  | {type: ActionType.INCREMENT_DAMAGE};
 
 const reducer = (
   state: typeof initialState,
   action: ActionProps
 ): typeof initialState => {
   switch (action.type) {
-    case LOAD_DATA:
-      console.log('loading data');
+    case ActionType.LOAD_DATA:
       return action.payload;
-    case CHANGE_NAME:
+    case ActionType.CHANGE_NAME:
       return {...state, name: action.payload};
-    case SET_LEVEL:
+    case ActionType.SET_LEVEL:
       return {...state, level: action.payload};
-    case INCREMENT_ATTRIBUTE:
+    case ActionType.INCREMENT_ATTRIBUTE:
       return {
         ...state,
         [action.payload as keyof typeof state]: ++state[
           action.payload as keyof typeof state
         ],
       };
-    case DECREMENT_ATTRIBUTE:
+    case ActionType.DECREMENT_ATTRIBUTE:
       return {
         ...state,
         [action.payload as keyof typeof state]: --state[
           action.payload as keyof typeof state
         ],
       };
-    case INCREMENT_DAMAGE:
+    case ActionType.INCREMENT_DAMAGE:
       return {
         ...state,
         damage: ++state.damage,

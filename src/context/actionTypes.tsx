@@ -1,62 +1,60 @@
 import characterData from '../utils/data';
-const LOAD_DATA = 'LOAD_DATA';
-const CHANGE_NAME = 'CHANGE_NAME';
-const SET_LEVEL = 'SET_LEVEL';
-const INCREMENT_ATTRIBUTE = 'INCREMENT_ATTRIBUTE';
-const DECREMENT_ATTRIBUTE = 'DECREMENT_ATTRIBUTE';
-const INCREMENT_DAMAGE = 'INCREMENT_DAMAGE';
+
+enum ActionType {
+  LOAD_DATA = 'LOAD_DATA',
+  CHANGE_NAME = 'CHANGE_NAME',
+  SET_LEVEL = 'SET_LEVEL',
+  INCREMENT_ATTRIBUTE = 'INCREMENT_ATTRIBUTE',
+  DECREMENT_ATTRIBUTE = 'DECREMENT_ATTRIBUTE',
+  INCREMENT_DAMAGE = 'INCREMENT_DAMAGE',
+}
 
 interface LoadData {
-  type: string;
+  type: ActionType;
   payload: typeof characterData;
 }
 
 interface PayloadString {
-  type: string;
+  type: ActionType;
   payload: string;
 }
 
 interface PayloadNumber {
-  type: string;
+  type: ActionType;
   payload: number;
 }
 
 const loadData = (data: typeof characterData): LoadData => ({
-  type: LOAD_DATA,
+  type: ActionType.LOAD_DATA,
   payload: data,
 });
 
 const changeName = (name: string): PayloadString => ({
-  type: CHANGE_NAME,
+  type: ActionType.CHANGE_NAME,
   payload: name,
 });
 
 const setLevel = (level: number): PayloadNumber => ({
-  type: SET_LEVEL,
+  type: ActionType.SET_LEVEL,
   payload: level,
 });
 
 const incrementAttribute = (attribute: string): PayloadString => ({
-  type: INCREMENT_ATTRIBUTE,
+  type: ActionType.INCREMENT_ATTRIBUTE,
   payload: attribute,
 });
 
 const decrementAttribute = (attribute: string): PayloadString => ({
-  type: DECREMENT_ATTRIBUTE,
+  type: ActionType.DECREMENT_ATTRIBUTE,
   payload: attribute,
 });
 
 const incrementDamage = (): {type: string} => ({
-  type: INCREMENT_DAMAGE,
+  type: ActionType.INCREMENT_DAMAGE,
 });
 
 export {
-  LOAD_DATA,
-  CHANGE_NAME,
-  SET_LEVEL,
-  INCREMENT_ATTRIBUTE,
-  DECREMENT_ATTRIBUTE,
-  INCREMENT_DAMAGE,
+  ActionType,
   loadData,
   changeName,
   setLevel,
